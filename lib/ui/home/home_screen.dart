@@ -24,17 +24,36 @@ class HomeScreen extends StatelessWidget {
                     onNextPress: () {
                       _homeController.changePage(true);
                     },
-                    index: _homeController.currentIndex.value,
+                    index: _homeController.holeNumber.value,
                     onPreviousPress: () {
                       _homeController.changePage(false);
                     },
                   )).paddingSymmetric(vertical: 20),
-              PlayerCard(
-                addScore: () {},
-                index: 0,
-                playerName: " sadasd asd sfh",
-                removeScore: () {},
-              ).paddingSymmetric(horizontal: 8),
+              GetBuilder<HomeController>(
+                  id: _homeController.golfPlayerListId,
+                  builder: (ctrl) => ctrl.selectedGame != null
+                      ? Column(
+                          children: ctrl.selectedGame!.players
+                              .map(
+                                (playerData) => PlayerCard(
+                                  addScore: () {
+                                    playerData.defaultScore++;
+                                    ctrl.update([ctrl.golfPlayerListId]);
+                                  },
+                                  index: playerData.defaultScore.toString(),
+                                  playerName:
+                                      "${playerData.firstName} ${playerData.lastName}",
+                                  removeScore: () {
+                                    if (playerData.defaultScore != 0) {
+                                      playerData.defaultScore--;
+                                    }
+                                    ctrl.update([ctrl.golfPlayerListId]);
+                                  },
+                                ).paddingSymmetric(horizontal: 8, vertical: 5),
+                              )
+                              .toList(),
+                        )
+                      : const SizedBox())
             ],
           ).paddingSymmetric(horizontal: 12),
           Obx(() => Visibility(

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:anques_interview_task/constants/app_string.dart';
 import 'package:anques_interview_task/utils/extensions.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,7 @@ class HeaderWidget extends StatelessWidget {
       required this.onNextPress,
       required this.onPreviousPress})
       : super(key: key);
-  int index;
+  String index;
   Function onNextPress;
   Function onPreviousPress;
   @override

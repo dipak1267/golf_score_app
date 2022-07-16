@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:anques_interview_task/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +16,7 @@ class PlayerCard extends StatelessWidget {
   }) : super(key: key);
 
   String playerName;
-  int index;
+  String index;
   Function addScore;
   Function removeScore;
 
@@ -28,11 +30,9 @@ class PlayerCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Spacer(),
           Expanded(
             child: playerName.appText(size: 21, weight: FontWeight.w400),
           ),
-          const Spacer(),
           _getScoreCard()
         ],
       ),
@@ -42,19 +42,29 @@ class PlayerCard extends StatelessWidget {
   Widget _getScoreCard() {
     return Container(
       height: 50,
-      decoration: BoxDecoration(color: Colors.red),
+      width: 200,
+      decoration: const BoxDecoration(color: Colors.red),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
-            Icons.remove_circle_outline_sharp,
-            size: 35,
-          ),
-          (32.0).addWSpace(),
+          IconButton(
+              onPressed: () {
+                addScore();
+              },
+              icon: const Icon(
+                Icons.remove_circle_outline_sharp,
+                size: 35,
+              )),
           index.toString().appCenterText(color: Colors.black, size: 18),
-          (32.0).addWSpace(),
-          Icon(
-            Icons.add_circle_outline_sharp,
-            size: 35,
+          IconButton(
+            onPressed: () {
+              addScore();
+            },
+            icon: const Icon(
+              Icons.add_circle_outline_sharp,
+              size: 35,
+            ),
           ),
         ],
       ).paddingSymmetric(horizontal: 9),

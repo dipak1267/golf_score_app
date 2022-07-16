@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class AppUrls {
   // static const String _DEV_BASE_URL = "http://codonnier.tech/harsh/Shwipe/dev";
   static const String _BASE_URL =

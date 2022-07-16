@@ -4,8 +4,6 @@
 
 import 'dart:convert';
 
-import 'package:get/get.dart';
-
 GolfGameList golfGameListFromJson(String str) =>
     GolfGameList.fromJson(json.decode(str));
 
@@ -64,13 +62,13 @@ class Player {
   String firstName;
   String lastName;
   String playerId;
-  RxInt defaultScore;
+  int defaultScore;
 
   factory Player.fromJson(Map<String, dynamic> json) => Player(
         firstName: json["firstName"],
         lastName: json["lastName"],
         playerId: json["player_id"],
-        defaultScore: int.parse((json["default_score"] ?? 0).toString()).obs,
+        defaultScore: int.parse((json["default_score"] ?? 0).toString()),
       );
 
   Map<String, dynamic> toJson() => {
