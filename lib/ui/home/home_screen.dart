@@ -1,3 +1,4 @@
+import 'package:anques_interview_task/constants/constants.dart';
 import 'package:anques_interview_task/ui/home/home_controller.dart';
 import 'package:anques_interview_task/utils/extensions.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,15 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
+          Opacity(
+            opacity: 0.9,
+            child: Image.asset(
+              AppImages.appBgImage,
+              height: Get.size.height,
+              width: Get.size.width,
+              fit: BoxFit.fill,
+            ),
+          ),
           Column(
             children: [
               Obx(() => HeaderWidget(

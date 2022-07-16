@@ -28,10 +28,10 @@ class PlayerCard extends StatelessWidget {
       decoration: BoxDecoration(
           color: appColor, borderRadius: BorderRadius.circular(8)),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: playerName.appText(size: 21, weight: FontWeight.w400),
+            child: playerName.appCenterText(size: 18, weight: FontWeight.w400),
           ),
           _getScoreCard()
         ],

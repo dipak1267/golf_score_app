@@ -16,7 +16,9 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    getGolfData();
+    Future.delayed(Duration.zero).then((value) {
+      getGolfData();
+    });
     super.onInit();
   }
 
@@ -42,6 +44,7 @@ class HomeController extends GetxController {
 
   /// Use this function to get golf gam list
   getGolfData() async {
+    isLoading.value = true;
     ResponseItem result =
         ResponseItem(data: null, message: errorText, status: false);
     result = await HomeRepo.getGoldMatch();
@@ -58,7 +61,9 @@ class HomeController extends GetxController {
       } else {
         showAppSnackBar(result.message);
       }
+      isLoading.value = false;
     } catch (e) {
+      isLoading.value = false;
       showAppSnackBar(e.toString());
     }
 
